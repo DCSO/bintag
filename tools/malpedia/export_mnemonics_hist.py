@@ -64,7 +64,7 @@ def get_imports():
 def get_mnemonics(f_ea):
     mnem = []
     for ea in idautils.FuncItems(f_ea):
-        mnem.append(idc.GetMnem(ea))
+        mnem.append(idc.print_insn_mnem(ea))
     return mnem
 
 def histogram(tokens):
@@ -81,7 +81,7 @@ def write_result(f, msg):
 # ==============================================================================
 
 def main():
-    idaapi.autoWait()
+    idaapi.auto_wait()
 
     info = dict()
 

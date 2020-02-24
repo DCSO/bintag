@@ -76,6 +76,9 @@ infomsg "found ${#pe32[@]} PE32 files"
 get_pe32_64 $1
 infomsg "found ${#pe32_64[@]} PE32+ files"
 
+# create directory for bintags
+mkdir -p $HOME/.bintag/tags
+
 for (( i=0; i<${#pe32[@]}; i++ ))
 do
     f=${pe32[$i]}
