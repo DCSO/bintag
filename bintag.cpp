@@ -278,16 +278,14 @@ static double calculate_euclidean_function_distance(std::vector<double> f0, std:
 
 inline
 static double calculate_cosine_function_distance(std::vector<double> f0, std::vector<double> f1) {
-    // -1 : exactly the opposite
-    //  0 : orthogonal
-    //  1 : exactly the same
+    //  1 : orthogonal
+    //  0 : same angle
     double a = 0;
     int n = f0.size();
     for (int i=0; i<n; i++) {
         a += f0[i] * f1[i];
     }
     if (a == 0) {
-        // exactly the opposite
         return 1.0;
     }
 
@@ -375,7 +373,7 @@ static double calculate_distance(json s0, json s1) {
         for (auto &f_s1 : v_s1) {
             double cosine_distance = calculate_cosine_function_distance(f_s0, f_s1);
             double euclidean_distance = calculate_euclidean_function_distance(f_s0, f_s1);
-            D[i][j] = (cosine_distance * euclidean_distance);
+            D[i][j] = cosine_distance * euclidean_distance;
             j += 1;
         }
         i += 1;
